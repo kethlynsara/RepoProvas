@@ -56,9 +56,7 @@ export async function signUp(signUpData: SignUpDataStructure) {
 export async function signIn(signUpData: authRepository.CreateAuthData) {
     const user = await checkUser(signUpData.email, "signIn");
     await checkPassword(signUpData.password, user.password);
-    const token = await generateToken(user.id);
-    await authRepository.insertSession({userId: user.id, token, isActive: true});
-    return token;
+    return await generateToken(user.id);;
 }
 
 export const authService = {

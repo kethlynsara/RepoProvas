@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { SignUpDataStructure } from "../repositories/authRepository";
+import { SignUpDataStructure } from "../repositories/authRepository.js";
 import * as authRepository from "../repositories/authRepository.js";
 dotenv.config();
 
@@ -56,7 +56,7 @@ export async function signUp(signUpData: SignUpDataStructure) {
 export async function signIn(signUpData: authRepository.CreateAuthData) {
     const user = await checkUser(signUpData.email, "signIn");
     await checkPassword(signUpData.password, user.password);
-    return await generateToken(user.id);;
+    return await generateToken(user.id);
 }
 
 export const authService = {

@@ -15,6 +15,7 @@ export async function validateToken(req: Request, res: Response, next: NextFunct
     }
 
     const data = jwt.verify(token, process.env.JWT_KEY);
+    console.log('data', data)
     if (!data) {
         return res.status(401).send("invalid token");
     }

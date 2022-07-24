@@ -18,6 +18,11 @@ export async function findByDiscipline() {
                                 include: {
                                     category: {}
                                 }
+                            },
+                            teacher: {
+                                select: {
+                                    name: true
+                                }
                             }
                         }
                     }
@@ -25,4 +30,8 @@ export async function findByDiscipline() {
             }
         }
     })
+}
+
+export async function findByTeacher() {
+    
 }

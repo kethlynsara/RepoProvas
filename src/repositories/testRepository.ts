@@ -13,9 +13,12 @@ export async function findByDiscipline() {
             disciplines: {
                 select: {
                     id: true,
-                    name: true,
+                    name: true,                 
                     teacherDisciplines: {
                         select: {
+                            id: true,
+                            discipline: {},
+                            teacher: {},
                             tests: {
                                 select: {
                                     id: true,
@@ -23,12 +26,8 @@ export async function findByDiscipline() {
                                     pdfUrl: true,
                                     category: {}
                                 }
-                            },
-                            teacher: {
-                                select: {
-                                    name: true
-                                }
-                            }
+                            },                           
+                            
                         }
                     }
                 }
@@ -44,7 +43,8 @@ export async function findByTeacher() {
                 select: {
                     discipline: {
                         select: {
-                            name: true
+                            name: true,
+                            term: {}
                         }
                     },
                     tests: {

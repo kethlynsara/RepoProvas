@@ -9,5 +9,5 @@ async function checkExistingCategory(categoryId: number) {
 }
 
 export const categoryService = {
-    checkExistingCategory    
+    checkExistingCategory  
 }

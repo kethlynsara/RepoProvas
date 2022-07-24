@@ -1,13 +1,14 @@
+import { findCategories } from "../repositories/categoryRepository.js";
 import { CreateTestData, findByDiscipline, findByTeacher, insert } from "../repositories/testRepository.js";
 
-export async function createTest(testData: CreateTestData) {
+async function createTest(testData: CreateTestData) {
     await insert(testData);
 }
 
 async function getTests(groupBy: string) {
-    if (groupBy === "discipline") {
+    if (groupBy === "disciplines") {
         return await findByDiscipline();
-    } else if (groupBy === "teacher"){
+    } else if (groupBy === "teachers"){
         return  await findByTeacher();
     } else {
         throw {
@@ -17,7 +18,12 @@ async function getTests(groupBy: string) {
     }    
 }
 
+async function getCategories() {
+    return await findCategories();
+}
+
 export const testService = {
     createTest,
-    getTests
+    getTests,
+    getCategories
 }

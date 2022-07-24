@@ -18,3 +18,8 @@ export async function getTests(req: Request, res: Response) {
     const tests = await testService.getTests(groupBy.toString());
     res.send(tests);
 }
+
+export async function getCategories(req: Request, res: Response) {
+    const categories = await testService.getCategories();
+    res.send(categories);
+}

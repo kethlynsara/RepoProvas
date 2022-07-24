@@ -11,11 +11,16 @@ export async function findByDiscipline() {
     return prisma.term.findMany({
         include: {
             disciplines: {
-                include: {
+                select: {
+                    id: true,
+                    name: true,
                     teacherDisciplines: {
                         select: {
                             tests: {
-                                include: {
+                                select: {
+                                    id: true,
+                                    name: true,
+                                    pdfUrl: true,
                                     category: {}
                                 }
                             },
@@ -33,5 +38,25 @@ export async function findByDiscipline() {
 }
 
 export async function findByTeacher() {
-    
+    return prisma.teacher.findMany({
+        include: {
+            teacherDisciplines: {
+                select: {
+                    discipline: {
+                        select: {
+                            name: true
+                        }
+                    },
+                    tests: {
+                        select: {
+                            id: true,
+                            name: true,
+                            pdfUrl: true,
+                            category: {}
+                        }
+                    },
+                }
+            }
+        }
+    })
 }

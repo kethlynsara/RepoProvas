@@ -12,3 +12,9 @@ export async function createTest(req: Request, res: Response) {
     await testService.createTest(data);
     res.sendStatus(201);
 }
+
+export async function getTests(req: Request, res: Response) {
+    const {groupBy} = req.query;
+    const tests = await testService.getTests(groupBy.toString());
+    res.send(tests);
+}

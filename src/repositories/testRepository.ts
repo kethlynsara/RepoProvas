@@ -3,6 +3,14 @@ import prisma from "../config/database.js";
 
 export type CreateTestData = Omit<Test, "id">;
 
+export type TestData = {
+    name: string;
+    pdfUrl: string;
+    category: string;
+    discipline: string;
+    teacher: string;
+}
+
 export async function insert(testData: CreateTestData) {
     return prisma.test.create({data: testData});
 }

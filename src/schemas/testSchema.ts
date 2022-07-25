@@ -1,9 +1,10 @@
 import joi from "joi";
-import { CreateTestData } from "../repositories/testRepository.js";
+import { TestData } from "../repositories/testRepository.js";
 
-export const testSchema = joi.object<CreateTestData>({
+export const testSchema = joi.object<TestData>({
     name: joi.string().required(),
     pdfUrl: joi.string().required(),
-    categoryId: joi.number().integer().required(),
-    teacherDisciplineId: joi.number().integer().required()
+    category: joi.string().required(),
+    discipline: joi.string().required(),
+    teacher: joi.string().required()
 });

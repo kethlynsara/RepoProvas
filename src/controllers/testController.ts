@@ -1,14 +1,10 @@
 import {  Request, Response } from "express";
-import { CreateTestData } from "../repositories/testRepository.js";
-import { categoryService } from "../services/categoryService.js";
-import { teacherDisciplineService } from "../services/teacherDisciplineService.js";
+import { TestData } from "../repositories/testRepository.js";
 import { testService } from "../services/testService.js";
 
 
 export async function createTest(req: Request, res: Response) {
-    const data: CreateTestData = req.body;
-    await categoryService.checkExistingCategory(data.categoryId);
-    await teacherDisciplineService.checkTeacherDisciplineId(data.teacherDisciplineId);
+    const data: TestData = req.body;
     await testService.createTest(data);
     res.sendStatus(201);
 }

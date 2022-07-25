@@ -14,10 +14,15 @@ export async function validateToken(req: Request, res: Response, next: NextFunct
         return res.status(401).send("invalid token");
     }
 
-    const data = jwt.verify(token, process.env.JWT_KEY);
-    console.log('data', data)
-    if (!data) {
-        return res.status(401).send("invalid token");
+    try {
+        const data = jwt.verify(token, process.env.JWT_KEY);
+        console.log('data', data)
+        if (!data) {
+            return res.status(401).send("invalid token");
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(401).send("invalid token")
     }
 
     next();
